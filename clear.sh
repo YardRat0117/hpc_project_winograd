@@ -2,4 +2,4 @@
 
 rm -rf *.out
 rm -rf *.err
-rm -rf winograd
+rm -rf *.ncu-rep

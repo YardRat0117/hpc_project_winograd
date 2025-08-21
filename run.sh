@@ -9,6 +9,7 @@
 #SBATCH --partition=V100
 #SBATCH --gpus=1
 
+source /pxe/opt/spack/share/spack/setup-env.sh
 spack env activate hpc101-cuda
 
 ./winograd inputs/config.txt
