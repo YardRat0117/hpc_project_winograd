@@ -15,7 +15,7 @@
         - Layer 9 `512 16 16 2048 64`
         - Small feature map,  big batch, big channel
         - Typical compute-bound
-4. Optimization v1: try one step at once, and remember to run profiling & documenting TODO
+4. Optimization v1: try 1 & 2 at first, and then run the same profiling. TODO
     1. Precompute and reuse filter transform
         - The `u_kc[4][4]` is computed in each channel of each thread.
         - We could try to store it (the `filter transform`) to shared memory.
