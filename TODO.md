@@ -22,10 +22,10 @@
     2. Loop unrolling with `#pragma unroll`
         - For fixed size matrix loops, we could try to use `#pragma unroll`.
         - Try this on `B_T * d`, `temp_d * B`, `A_T * m`, etc.
-5. Profiling v1 TODO
+5. Profile v1-beta to profile typical cases for the baseline
     1. Test whether v1 runs correctly.
-    2. Run profiling on v1 to spot bottlenecks.
-    3. (If possible) Rewrite v1 for more clear code style. 
+    2. (Critical) Fix the `ncu.sh` script for revised kernels.
+    3. Run profiling on v1 to spot bottlenecks. Still layer 1, 4, and 9.
 6. Further Optimization STAGED
     1. Use WMMA / Tensor Cores
         - Try use `wmma::load_matrix_sync`, `wmma::mma_sync`, `wmma::store_matrix_sync` to rewrite element-wise transform/accumulation
