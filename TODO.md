@@ -15,12 +15,18 @@
         - Layer 9 `512 16 16 2048 64`
         - Small feature map,  big batch, big channel
         - Typical compute-bound
-4. Optimization v1: try 1 & 2 at first, and then run the same profiling. TODO
+4. ~~Optimization v1~~ DONE
     1. Precompute and reuse filter transform
         - The `u_kc[4][4]` is computed in each channel of each thread.
         - We could try to store it (the `filter transform`) to shared memory.
     2. Loop unrolling with `#pragma unroll`
         - For fixed size matrix loops, we could try to use `#pragma unroll`.
         - Try this on `B_T * d`, `temp_d * B`, `A_T * m`, etc.
-    3. Use WMMA / Tensor Cores
+5. Profiling v1 TODO
+    1. Test whether v1 runs correctly.
+    2. Run profiling on v1 to spot bottlenecks.
+    3. (If possible) Rewrite v1 for more clear code style. 
+6. Further Optimization STAGED
+    1. Use WMMA / Tensor Cores
         - Try use `wmma::load_matrix_sync`, `wmma::mma_sync`, `wmma::store_matrix_sync` to rewrite element-wise transform/accumulation
+    2. Use MPI
