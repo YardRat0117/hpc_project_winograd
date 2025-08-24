@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=ave_wino
-#SBATCH --output=%j_ncu.out
-#SBATCH --error=%j_ncu.err
+#SBATCH --output=%j_nsys.out
+#SBATCH --error=%j_nsys.err
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
@@ -21,6 +21,5 @@ spack env activate hpc101-cuda
 export TMPDIR=~/tmp
 mkdir -p $TMPDIR
 
-/usr/local/cuda/bin/ncu --kernel-name regex:.*${KERNEL} \
-                        --launch-skip ${SKIP} --launch-count ${COUNT} \
-                        -- ./winograd inputs/config.txt
+/usr/local/cuda/bin/nsys profile --output nsys_prof --stats=true \
+                         -- ./winograd inputs/config.txt

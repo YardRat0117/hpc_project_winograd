@@ -1,0 +1,289 @@
+==PROF== Connected to process 27710 (/home/hpc101/h3240105781/winograd/winograd)
+=== Running Naive Convolution ===
+Layer  0: 1.56 ms (1716.46 GFLOPS)
+Layer  1: 14.53 ms (1965.25 GFLOPS)
+Layer  2: 26.16 ms (2182.80 GFLOPS)
+Layer  3: 48.62 ms (2348.69 GFLOPS)
+Layer  4: 98.75 ms (2312.82 GFLOPS)
+Layer  5: 37.24 ms (2335.42 GFLOPS)
+Layer  6: 74.44 ms (2336.69 GFLOPS)
+Layer  7: 148.60 ms (2341.13 GFLOPS)
+Layer  8: 297.44 ms (2339.26 GFLOPS)
+Layer  9: 111.26 ms (2128.06 GFLOPS)
+Layer 10: 1.16 ms (1836.35 GFLOPS)
+Layer 11: 19.56 ms (2316.83 GFLOPS)
+Layer 12: 9.50 ms (2289.10 GFLOPS)
+Layer 13: 18.76 ms (2317.79 GFLOPS)
+Layer 14: 5.72 ms (2139.60 GFLOPS)
+Layer 15: 2.21 ms (1919.41 GFLOPS)
+Layer 16: 5.62 ms (2016.39 GFLOPS)
+Layer 17: 5.86 ms (1854.90 GFLOPS)
+Baseline Total: 926.97 ms (2290.90 GFLOPS)
+
+=== Running Winograd Convolution ===
+Layer  0: 4.70 ms (569.66 GFLOPS)
+==PROF== Profiling "input_transform_kernel": 0%....50%....100% - 18 passes
+==PROF== Profiling "input_transform_kernel": 0%....50%....100% - 18 passes
+==PROF== Profiling "input_transform_kernel": 0%....50%....100% - 18 passes
+Layer  1: 831.41 ms (34.34 GFLOPS)
+Layer  2: 7.61 ms (7497.89 GFLOPS)
+Layer  3: 10.53 ms (10843.06 GFLOPS)
+Layer  4: 15.99 ms (14279.22 GFLOPS)
+Layer  5: 5.57 ms (15611.08 GFLOPS)
+Layer  6: 9.69 ms (17956.59 GFLOPS)
+Layer  7: 18.35 ms (18954.75 GFLOPS)
+Layer  8: 31.18 ms (22317.70 GFLOPS)
+Layer  9: 11.51 ms (20577.70 GFLOPS)
+Layer 10: 3.38 ms (628.69 GFLOPS)
+Layer 11: 7.61 ms (5957.63 GFLOPS)
+Layer 12: 3.03 ms (7173.54 GFLOPS)
+Layer 13: 4.21 ms (10320.96 GFLOPS)
+Layer 14: 1.47 ms (8300.16 GFLOPS)
+Layer 15: 1.01 ms (4184.86 GFLOPS)
+Layer 16: 1.30 ms (8728.65 GFLOPS)
+Layer 17: 1.50 ms (7258.55 GFLOPS)
+Custom Total: 970.05 ms (2189.15 GFLOPS)
+
+=== Correctness Check ===
+Layer  0: [32mCORRECT[0m (Speedup: 0.33x)
+Layer  1: [32mCORRECT[0m (Speedup: 0.02x)
+Layer  2: [32mCORRECT[0m (Speedup: 3.43x)
+Layer  3: [32mCORRECT[0m (Speedup: 4.62x)
+Layer  4: [32mCORRECT[0m (Speedup: 6.17x)
+Layer  5: [32mCORRECT[0m (Speedup: 6.68x)
+Layer  6: [32mCORRECT[0m (Speedup: 7.68x)
+Layer  7: [32mCORRECT[0m (Speedup: 8.10x)
+Layer  8: [32mCORRECT[0m (Speedup: 9.54x)
+Layer  9: [32mCORRECT[0m (Speedup: 9.67x)
+Layer 10: [32mCORRECT[0m (Speedup: 0.34x)
+Layer 11: [32mCORRECT[0m (Speedup: 2.57x)
+Layer 12: [32mCORRECT[0m (Speedup: 3.13x)
+Layer 13: [32mCORRECT[0m (Speedup: 4.45x)
+Layer 14: [32mCORRECT[0m (Speedup: 3.88x)
+Layer 15: [32mCORRECT[0m (Speedup: 2.18x)
+Layer 16: [32mCORRECT[0m (Speedup: 4.33x)
+Layer 17: [32mCORRECT[0m (Speedup: 3.91x)
+
+=== Final Results ===
+[32mResults are correct![0m
+Naive:    926.97 ms (2290.90 GFLOPS)
+Winograd: 970.05 ms (2189.15 GFLOPS)
+Overall speedup: 0.96x
+==PROF== Disconnected from process 27710
+[27710] winograd@127.0.0.1
+  input_transform_kernel(const float *, float *, int, int, int, int, int, int) (24200, 1, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: GPU Speed Of Light Throughput
+    ----------------------- ----------- ------------
+    Metric Name             Metric Unit Metric Value
+    ----------------------- ----------- ------------
+    DRAM Frequency                  Mhz       870.47
+    SM Frequency                    Ghz         1.29
+    Elapsed Cycles                cycle    1,443,804
+    Memory Throughput                 %        91.53
+    DRAM Throughput                   %        50.65
+    Duration                         ms         1.12
+    L1/TEX Cache Throughput           %        91.91
+    L2 Cache Throughput               %        25.41
+    SM Active Cycles              cycle 1,434,740.11
+    Compute (SM) Throughput           %        15.12
+    ----------------------- ----------- ------------
+
+    INF   This workload is utilizing greater than 80.0% of the available compute or memory performance of the device.   
+          To further improve performance, work will likely need to be shifted from the most utilized to another unit.   
+          Start by analyzing L1 in the Memory Workload Analysis section.                                                
+
+    Section: Launch Statistics
+    -------------------------------- --------------- ---------------
+    Metric Name                          Metric Unit    Metric Value
+    -------------------------------- --------------- ---------------
+    Block Size                                                   256
+    Function Cache Configuration                     CachePreferNone
+    Grid Size                                                 24,200
+    Registers Per Thread             register/thread              32
+    Shared Memory Configuration Size            byte               0
+    Driver Shared Memory Per Block        byte/block               0
+    Dynamic Shared Memory Per Block       byte/block               0
+    Static Shared Memory Per Block        byte/block               0
+    # SMs                                         SM              80
+    Stack Size                                                 1,024
+    Threads                                   thread       6,195,200
+    # TPCs                                                        40
+    Enabled TPC IDs                                              all
+    Uses Green Context                                             0
+    Waves Per SM                                               37.81
+    -------------------------------- --------------- ---------------
+
+    Section: Occupancy
+    ------------------------------- ----------- ------------
+    Metric Name                     Metric Unit Metric Value
+    ------------------------------- ----------- ------------
+    Block Limit SM                        block           32
+    Block Limit Registers                 block            8
+    Block Limit Shared Mem                block           32
+    Block Limit Warps                     block            8
+    Theoretical Active Warps per SM        warp           64
+    Theoretical Occupancy                     %          100
+    Achieved Occupancy                        %        94.44
+    Achieved Active Warps Per SM           warp        60.44
+    ------------------------------- ----------- ------------
+
+    Section: GPU and Memory Workload Distribution
+    -------------------------- ----------- ------------
+    Metric Name                Metric Unit Metric Value
+    -------------------------- ----------- ------------
+    Average DRAM Active Cycles       cycle   493,814.12
+    Total DRAM Elapsed Cycles        cycle   31,200,256
+    Average L1 Active Cycles         cycle 1,434,740.11
+    Total L1 Elapsed Cycles          cycle  115,249,248
+    Average L2 Active Cycles         cycle 1,365,736.16
+    Total L2 Elapsed Cycles          cycle   88,111,616
+    Average SM Active Cycles         cycle 1,434,740.11
+    Total SM Elapsed Cycles          cycle  115,249,248
+    Average SMSP Active Cycles       cycle 1,435,421.40
+    Total SMSP Elapsed Cycles        cycle  460,996,992
+    -------------------------- ----------- ------------
+
+  input_transform_kernel(const float *, float *, int, int, int, int, int, int) (24200, 1, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: GPU Speed Of Light Throughput
+    ----------------------- ----------- ------------
+    Metric Name             Metric Unit Metric Value
+    ----------------------- ----------- ------------
+    DRAM Frequency                  Mhz       875.79
+    SM Frequency                    Ghz         1.30
+    Elapsed Cycles                cycle    1,443,380
+    Memory Throughput                 %        91.49
+    DRAM Throughput                   %        50.68
+    Duration                         ms         1.11
+    L1/TEX Cache Throughput           %        91.86
+    L2 Cache Throughput               %        25.40
+    SM Active Cycles              cycle 1,435,342.94
+    Compute (SM) Throughput           %        15.11
+    ----------------------- ----------- ------------
+
+    INF   This workload is utilizing greater than 80.0% of the available compute or memory performance of the device.   
+          To further improve performance, work will likely need to be shifted from the most utilized to another unit.   
+          Start by analyzing L1 in the Memory Workload Analysis section.                                                
+
+    Section: Launch Statistics
+    -------------------------------- --------------- ---------------
+    Metric Name                          Metric Unit    Metric Value
+    -------------------------------- --------------- ---------------
+    Block Size                                                   256
+    Function Cache Configuration                     CachePreferNone
+    Grid Size                                                 24,200
+    Registers Per Thread             register/thread              32
+    Shared Memory Configuration Size            byte               0
+    Driver Shared Memory Per Block        byte/block               0
+    Dynamic Shared Memory Per Block       byte/block               0
+    Static Shared Memory Per Block        byte/block               0
+    # SMs                                         SM              80
+    Stack Size                                                 1,024
+    Threads                                   thread       6,195,200
+    # TPCs                                                        40
+    Enabled TPC IDs                                              all
+    Uses Green Context                                             0
+    Waves Per SM                                               37.81
+    -------------------------------- --------------- ---------------
+
+    Section: Occupancy
+    ------------------------------- ----------- ------------
+    Metric Name                     Metric Unit Metric Value
+    ------------------------------- ----------- ------------
+    Block Limit SM                        block           32
+    Block Limit Registers                 block            8
+    Block Limit Shared Mem                block           32
+    Block Limit Warps                     block            8
+    Theoretical Active Warps per SM        warp           64
+    Theoretical Occupancy                     %          100
+    Achieved Occupancy                        %        94.37
+    Achieved Active Warps Per SM           warp        60.40
+    ------------------------------- ----------- ------------
+
+    Section: GPU and Memory Workload Distribution
+    -------------------------- ----------- ------------
+    Metric Name                Metric Unit Metric Value
+    -------------------------- ----------- ------------
+    Average DRAM Active Cycles       cycle   494,144.16
+    Total DRAM Elapsed Cycles        cycle   31,200,000
+    Average L1 Active Cycles         cycle 1,435,342.94
+    Total L1 Elapsed Cycles          cycle  115,292,908
+    Average L2 Active Cycles         cycle 1,366,286.94
+    Total L2 Elapsed Cycles          cycle   88,108,608
+    Average SM Active Cycles         cycle 1,435,342.94
+    Total SM Elapsed Cycles          cycle  115,292,908
+    Average SMSP Active Cycles       cycle 1,435,402.55
+    Total SMSP Elapsed Cycles        cycle  461,171,632
+    -------------------------- ----------- ------------
+
+  input_transform_kernel(const float *, float *, int, int, int, int, int, int) (24200, 1, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: GPU Speed Of Light Throughput
+    ----------------------- ----------- ------------
+    Metric Name             Metric Unit Metric Value
+    ----------------------- ----------- ------------
+    DRAM Frequency                  Mhz       875.18
+    SM Frequency                    Ghz         1.30
+    Elapsed Cycles                cycle    1,443,314
+    Memory Throughput                 %        91.36
+    DRAM Throughput                   %        50.69
+    Duration                         ms         1.11
+    L1/TEX Cache Throughput           %        91.91
+    L2 Cache Throughput               %        25.37
+    SM Active Cycles              cycle 1,434,618.24
+    Compute (SM) Throughput           %        15.09
+    ----------------------- ----------- ------------
+
+    INF   This workload is utilizing greater than 80.0% of the available compute or memory performance of the device.   
+          To further improve performance, work will likely need to be shifted from the most utilized to another unit.   
+          Start by analyzing L1 in the Memory Workload Analysis section.                                                
+
+    Section: Launch Statistics
+    -------------------------------- --------------- ---------------
+    Metric Name                          Metric Unit    Metric Value
+    -------------------------------- --------------- ---------------
+    Block Size                                                   256
+    Function Cache Configuration                     CachePreferNone
+    Grid Size                                                 24,200
+    Registers Per Thread             register/thread              32
+    Shared Memory Configuration Size            byte               0
+    Driver Shared Memory Per Block        byte/block               0
+    Dynamic Shared Memory Per Block       byte/block               0
+    Static Shared Memory Per Block        byte/block               0
+    # SMs                                         SM              80
+    Stack Size                                                 1,024
+    Threads                                   thread       6,195,200
+    # TPCs                                                        40
+    Enabled TPC IDs                                              all
+    Uses Green Context                                             0
+    Waves Per SM                                               37.81
+    -------------------------------- --------------- ---------------
+
+    Section: Occupancy
+    ------------------------------- ----------- ------------
+    Metric Name                     Metric Unit Metric Value
+    ------------------------------- ----------- ------------
+    Block Limit SM                        block           32
+    Block Limit Registers                 block            8
+    Block Limit Shared Mem                block           32
+    Block Limit Warps                     block            8
+    Theoretical Active Warps per SM        warp           64
+    Theoretical Occupancy                     %          100
+    Achieved Occupancy                        %        94.49
+    Achieved Active Warps Per SM           warp        60.48
+    ------------------------------- ----------- ------------
+
+    Section: GPU and Memory Workload Distribution
+    -------------------------- ----------- ------------
+    Metric Name                Metric Unit Metric Value
+    -------------------------- ----------- ------------
+    Average DRAM Active Cycles       cycle   493,857.75
+    Total DRAM Elapsed Cycles        cycle   31,173,632
+    Average L1 Active Cycles         cycle 1,434,618.24
+    Total L1 Elapsed Cycles          cycle  115,464,154
+    Average L2 Active Cycles         cycle    1,365,890
+    Total L2 Elapsed Cycles          cycle   88,104,640
+    Average SM Active Cycles         cycle 1,434,618.24
+    Total SM Elapsed Cycles          cycle  115,464,154
+    Average SMSP Active Cycles       cycle 1,436,209.48
+    Total SMSP Elapsed Cycles        cycle  461,856,616
+    -------------------------- ----------- ------------
+

@@ -24,7 +24,7 @@
         - Try this on `B_T * d`, `temp_d * B`, `A_T * m`, etc.
 5. Profile v1-beta to profile typical cases for the baseline
     1. Test whether v1 runs correctly.
-    2. (Critical) Fix the `ncu.sh` script for revised kernels.
+    2. Fix the `ncu.sh` script for revised kernels.
     3. Run profiling on v1 to spot bottlenecks. Still layer 1, 4, and 9.
 6. Further Optimization STAGED
     1. Use WMMA / Tensor Cores
